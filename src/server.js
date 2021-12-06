@@ -1,9 +1,13 @@
 //Import
 const express = require('express');
 const Auth = require('./controllers/Auth');
+const dotenv        = require('dotenv');
+
+//env
+dotenv.config();
+const { PORT } = process.env;
 
 //Objects
-const port = 3000
 const app = express();
 
 //Configurations
@@ -15,6 +19,6 @@ app.get('/', (req, res) => {
     res.send('App is running online');
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+    console.log(`Example app listening at http://localhost:${PORT}`)
 })
