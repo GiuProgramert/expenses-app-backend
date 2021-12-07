@@ -1,11 +1,7 @@
 //Import
 const express = require('express');
 const Auth = require('./controllers/Auth');
-const dotenv        = require('dotenv');
-
-//env
-dotenv.config();
-const { PORT } = process.env;
+const { PORT } = require('./config/getEnv');
 
 //Objects
 const app = express();
