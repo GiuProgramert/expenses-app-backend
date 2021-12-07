@@ -1,25 +1,28 @@
-const express = require('express');
-const User    = require('../models/User'); 
+const express = require("express");
+const User = require("../models/User");
+const bcrypt = require('bcrypt');
+const validateRegister = require('../helpers/validateRegister')
 
+const saltRounds = 8;
 const router = express.Router();
 
-router.get('/register', async function(req, res) {
-    try {
-        const giu = await User.create({
-            username: 'giu',
-            email: 'giulidiazp@gmail.com',
-            name: 'Giuliano',
-            lastname: 'Diaz',
-            password: '1234',
-        });
+router.get("/register", async function (req, res) {
+  let user;
+  
+  try {
+    const { username, email, name, lastname, password, password_confirmation } = req.body;
+    const validateErrors = await validateRegister(username, email, password, password_confirmation);
 
-        console.log(giu instanceof User); // true
-        console.log(giu.name); // "Jane"
-        return res.send('Connection has been established successfully.');
-    } catch (error) {
-        console.log(error);
-        return res.json(error);
-    }
+    if (validateErrors.length > 0) return res.json(validateErrors).status(400);
+
+    bcrypt.hash(password, saltRounds, async (err, hash) => {
+      user = await User.create({ username, email, name, lastname, password: hash });
+      if (user) return res.send("Usuario creado").status(200);
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json(error).status(500);
+  }
 });
 
 module.exports = router;
