@@ -23,7 +23,7 @@ module.exports = async (username, email, password, password_confirmation) => {
     });
     
     if (user.length > 0) 
-      errors.push({msg: 'El email o el usuario ya estan siendo utlizadas'});
+      errors.push({msg: 'El email o el usuario ya estan siendo utlizados'});
 
     return errors;
   } catch (error) {

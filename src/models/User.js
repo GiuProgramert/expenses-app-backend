@@ -12,11 +12,11 @@ User.init(
       allowNull: false,
     },
     password: { //!
-      type: DataTypes.UUID,
+      type: DataTypes.STRING(255),
       allowNull: false,
     },
     username: { //!
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       unique: true,
       allowNull: false,
     },
