@@ -1,6 +1,6 @@
 //Import
 const express = require('express');
-const Auth = require('./controllers/Auth/AuthController');
+const Auth = require('./controllers/Auth/authController');
 const { PORT } = require('./config/getEnv');
 
 //Objects
