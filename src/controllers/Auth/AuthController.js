@@ -1,5 +1,5 @@
 const express = require("express");
-const jwtMiddleware = require("../../middlewares/jwt");
+const jwtMiddleware = require("../../middlewares/jwtMiddleware");
 
 const login = require("./loginRoute");
 const register = require("./registerRoute");
